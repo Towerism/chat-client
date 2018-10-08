@@ -4,10 +4,12 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
+import VueSocketio from 'vue-socket.io'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+Vue.use(VueSocketio, 'http://localhost:3030')
 
 /* eslint-disable no-new */
 new Vue({
