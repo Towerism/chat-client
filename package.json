@@ -57,8 +57,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
+    "purecss": "^1.0.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
