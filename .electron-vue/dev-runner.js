@@ -181,6 +181,7 @@ function init () {
   Promise.all([startRenderer(), startMain()])
     .then(() => {
       startElectron()
+      startElectron() // start second instance to test chat functionalities
     })
     .catch(err => {
       console.error(err)

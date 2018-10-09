@@ -9,8 +9,8 @@
 <script>
 export default {
   sockets: {
-    news ({ text }) {
-      console.log(`news: ${text}`)
+    chatbroadcast (payload) {
+      this.addMessage(payload)
     }
   },
   data () {
@@ -21,11 +21,15 @@ export default {
   },
   methods: {
     sendMessage (content) {
-      this.messages.push({
+      const payload = {
         author: 'Martin Fracker',
         content
-      })
-      this.$socket.emit('chatmessage', content)
+      }
+      this.addMessage(payload)
+      this.$socket.emit('chatmessage', payload)
+    },
+    addMessage ({ author, content }) {
+      this.messages.push({ author, content })
     }
   }
 }
