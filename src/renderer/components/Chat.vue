@@ -1,20 +1,30 @@
 <template lang="pug">
   .chat
-    .messages.pure-g
-      .message.pure-u-1.pure-g(v-for="message in messages")
-        .author {{message.author}}
-        .content {{message.content}}
-    .new-message.pure-g
-      form.pure-form
-        textarea(type="text" placeholder="Type your message here" v-model="newMessage" @keyup.enter.exact="sendMessage()")
+    top-bar
+    .app-page-wrapper
+      .messages.pure-g(v-if="messages.length > 0")
+        .message.pure-u-1.pure-g(v-for="message in messages")
+          .author {{message.author}}
+          .content {{message.content}}
+      .new-message.pure-g
+        form.pure-form
+          textarea(type="text" placeholder="Type your message here" v-model="newMessage" @keyup.enter.exact="sendMessage()")
 </template>
 
 <script>
+import TopBar from './TopBar'
+
 export default {
+  components: {
+    TopBar
+  },
   sockets: {
     chatbroadcast (payload) {
       this.addMessage(payload)
     }
+  },
+  props: {
+    user: String
   },
   data () {
     return {
@@ -25,7 +35,7 @@ export default {
   methods: {
     sendMessage () {
       const payload = {
-        author: 'Martin Fracker',
+        author: this.user,
         content: this.newMessage
       }
       this.addMessage(payload)
@@ -40,10 +50,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-.chat {
-  margin: 1rem;
-}
-
 .author {
   font-weight: 900;
 }

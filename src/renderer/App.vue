@@ -10,6 +10,8 @@
   }
 </script>
 
-<style>
-  /* CSS */
+<style lang="less">
+.app-page-wrapper {
+  margin: 1rem
+}
 </style>
